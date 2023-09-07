@@ -1,0 +1,65 @@
+<p style="color: green"><%= notice %></p>
+<div class="container">
+  <p>
+    <li><strong>Tipo de Motor:</strong>
+    <%= @upkeep.engine.feature.name.capitalize %>
+    </li>
+  </p>
+
+  <p>
+    <li><strong>Tipo de mantenimiento:</strong>
+    <%= @upkeep.upkeeptipe.name.capitalize %>
+    </li>
+  </p>
+
+  <p>
+    <li><strong>Nombre motor:</strong>
+    <%= @upkeep.engine.name %>
+    </li>
+  </p>
+
+  <p>
+    <li><strong>Ciudad:</strong>
+    <%= @upkeep.city.name %>
+    </li>
+  </p>
+
+<div>
+    <p><li><strong>Materiales:</strong></li></p>
+<%# Hacemos una iteracion para mostrar todos los materiales seleccionados al momento de la
+creacion del mantenimiento %>
+  <div class="col-md-6">
+    <ol class="list-group list-group-numbered">
+      <% @upkeep.materials.each do |m| %>
+        <li class="list-group-item d-flex justify-content-between align-items-start">
+          <div class="ms-2 me-auto">
+            <div class="fw-bold"><%= m.name %></div>
+          </div>
+        </li>
+      <% end %>
+    </ol>
+  </div>
+
+  <p>
+    <li><strong>Fecha mantenimiento:</strong>
+    <%= @upkeep.date %>
+    </li>
+  </p>
+
+  <p>
+    <li><strong>Email del tecnico que realizo el mantenimiento:</strong>
+    <%= @upkeep.email %>
+    </li>
+  </p>
+
+
+<div>
+  <%= link_to "Volver a Mantenciones", upkeeps_path, class:"btn btn-dark mb-3 mt-3" %> 
+   <%# #Esta logica nos permite que los botones de elimiar y editar solo se muestren al
+  administrador actualmente creado, dado los requerimientos del ejercicio %>
+  <% if User.first == current_user %>
+  <%= link_to "Editar Mantencion", edit_upkeep_path(@upkeep), class:"btn btn-dark mb-3  mt-3" %> 
+  <%= button_to "Eliminar Mantencion", @upkeep, method: :delete, class:"btn btn-danger mb-3" %>
+  <% end %>
+</div>
+</div>

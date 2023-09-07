@@ -1,0 +1,21 @@
+<div id="<%= dom_id engine %>">
+<%# Tabla de bootstrap con los respectivos requerimientos, ademas esta vinculada a traves de scopes
+en la vista index.html.erb de engines %>
+<div class="container">
+ <tr>
+    <th scope="row"><%= engine.id %></th>
+    <td><%= engine.feature.name.capitalize %></td>
+    <td><%= engine.name.capitalize %></td>
+    <td><%= engine.description.capitalize %></td>
+    <%# Utiliza una imagen por defecto si el usuario no agrega ninguna la momento de la creacion de un motor.
+    El guardado de la imagen que sube el usuario se hace de forma local con active storage. %>
+    <% if engine.image.attached? %>
+    <td><%= image_tag engine.image, class:"photo" %></td>
+    <% else %>
+    <td><%= image_tag 'motor.jpg', class:"photo" %></td>
+    <% end %>
+    <td><%= link_to "Ver Motor", engine, class:"btn btn-primary" %></td>
+</tr>
+</div>
+
+</div>

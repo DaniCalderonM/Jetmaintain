@@ -1,0 +1,45 @@
+<p style="color: green"><%= notice %></p>
+<div class="container">
+
+  <p>
+  <li><strong>Tipo de Equipo:</strong>
+    <%= @engine.feature.name %>
+  </li>
+  </p>
+
+  <p>
+    <li><strong>Nombre:</strong>
+    <%= @engine.name %>
+  </li>
+  </p>
+
+  <p>
+    <li><strong>Descripcion:</strong>
+    <%= @engine.description %>
+    </li>
+  </p>
+
+  <p>
+    <li><strong>Imagen Motor:</strong>
+    </li>
+  </p>
+    <% if @engine.image.attached? %> 
+    <div>
+      <%= image_tag @engine.image, class:"photo"%>
+      <% else %>
+      <%= image_tag 'motor.jpg', class:"photo" %>
+      <% end %>
+    </div>
+
+ <div class="container">
+  <%= link_to "Volver a Motores", engines_path, class:"btn btn-dark mb-3 mt-3" %>
+  <%# #Esta logica nos permite que los botones de elimiar y editar solo se muestren al
+  administrador actualmente creado, dado los requerimientos del ejercicio %>
+  <% if User.first == current_user %>
+  <%= link_to "Editar Motor", edit_engine_path(@engine), class:"btn btn-dark mb-3 mt-3" %>
+  <%= button_to "Eliminar este Motor", @engine, method: :delete, class:"btn btn-danger mb-3" %>
+  <% end %>
+
+  
+  </div>
+</div>

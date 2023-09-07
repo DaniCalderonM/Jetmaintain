@@ -1,0 +1,21 @@
+<div id="<%= dom_id upkeep %>">
+ <%# Tabla de bootstrap con los respectivos requerimientos, ademas esta vinculada a traves de scopes
+en la vista index.html.erb de upkeeps %>
+<div class="container">
+ <tr>
+    <th scope="row"><%= upkeep.id %></th>
+    <td><%= upkeep.engine.feature.name.capitalize %></td>
+    <td><%= upkeep.upkeeptipe.name.capitalize %></td>
+    <td><%= upkeep.engine.name %></td>
+    <%# Utiliza una imagen por defecto si el usuario no agrega ninguna la momento de la creacion de un motor.
+    El guardado de la imagen que sube el usuario se hace de forma local con active storage. %>
+    <% if upkeep.engine.image.attached? %>
+    <td><%= upkeep.engine.image %></td>
+    <% else %>
+    <td><%= image_tag 'motor.jpg', class:"photo" %></td>
+    <% end %>
+    <td><%= link_to "Ver Mantenimiento", upkeep, class:"btn btn-primary" %></td>
+</tr>
+</div>
+
+</div>

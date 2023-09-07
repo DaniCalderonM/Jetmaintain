@@ -1,0 +1,49 @@
+<nav class="navbar navbar-expand-lg bg-dark border-bottom border-body" data-bs-theme="dark">
+  <div class="container-fluid">
+    <a class="navbar-brand" href="#">JetMaintain</a>
+    <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarNavDropdown">
+      <ul class="navbar-nav me-auto">
+        <li class="nav-item">
+        <%= link_to "Inicio", root_path, class:"nav-link" %>
+        </li>
+        <li class="nav-item">
+            <%= link_to "Terminos y Condiciones", homes_termin_path, class:"nav-link" %>
+        </li>
+        
+        <li class="nav-item">
+    <%# Esta logica nos permite mostrar motores y mantenimientos solo a los usuarios
+    conectados a la aplicacion %>
+            <% if user_signed_in? %>
+        <li><%= link_to "Motores", engines_path, class:"nav-link" %> </li>
+        <li><%= link_to "Mantenimientos", upkeeps_path, class:"nav-link" %> </li>
+            <% end %>
+        </li>
+        </ul>
+        <ul class="navbar-nav ms-auto">
+        <li class="nav-item dropdown">
+          <a class="nav-link dropdown-toggle" href="#" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            <%# Esta logica nos permite saludar al usuario con su correo cuando inicio sesion o
+            en su defecto decirle que se registre o inicie sesion  %>
+            <% if user_signed_in? %> 
+            Hola <%= current_user.email %>
+            <% else %>
+            Inicia sesión / Registrate
+            <% end %>
+          </a>
+                   
+          <ul class="dropdown-menu">
+            <% if user_signed_in? %>
+            <li><%= button_to "Cerrar Sesión", destroy_user_session_path, class:"dropdown-item", method: :delete %></li>
+            <% else %> 
+            <li><%= link_to "Iniciar Sesión", new_user_session_path, class:"dropdown-item" %></li>
+            <li><%= link_to "Registrarme", new_user_registration_path, class:"dropdown-item" %></li>
+            <% end %>
+          </ul>
+        </li>
+      </ul>
+    </div>  
+  </div>
+</nav>

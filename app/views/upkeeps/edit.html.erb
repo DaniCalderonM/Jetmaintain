@@ -1,0 +1,12 @@
+<div class="container">
+<h1><u>Editar Mantenimiento</u></h1>
+
+<%= render "form", upkeep: @upkeep %>
+
+<br>
+
+<div>
+  <%= link_to "Mostrar este Mantenimiento", @upkeep, class:"btn btn-dark" %> |
+  <%= link_to "Volver a Mantenimientos", upkeeps_path, class:"btn btn-dark" %>
+</div>
+</div>

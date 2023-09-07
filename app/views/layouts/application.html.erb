@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title>Jetmaintain</title>
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <%= csrf_meta_tags %>
+    <%= csp_meta_tag %>
+    <%= stylesheet_link_tag "application", "data-turbo-track": "reload" %>
+    <%= javascript_importmap_tags %>
+  </head>
+
+  <body>
+    <%= render "shared/navbar" %>
+
+<%# notice de devise %>
+<% if flash[:notice] %>
+      <div class=" alert alert-success my-0">
+        <%= flash[:notice] %>
+      </div>
+    <% end %>
+
+    <%= yield %>
+
+
+
+  <script src="https://kit.fontawesome.com/8bcc232b0f.js" crossorigin="anonymous"></script>
+  </body>
+</html>
